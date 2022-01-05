@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+$green: #27ae60;
+$black: #192a56;
+$light-color: #666;
+$box-shadow: 0 .5rem 1.5rem rgba(0,0,0,1); /*????????????????????????????????*/
+
+*{
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  transition: all .2s linear;/*transition daje efekat kretanja nekog elementa ovde ce trajati 2 sekunde efekat*/
+}
+
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 5.5rem;/*kad dodjes do polovine elementa centrirace ga*/
+  scroll-behavior: smooth;
+
+}
+
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 1rem 7%;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  box-shadow: $box-shadow;
+  display: flex;
+}
+
+header .logo{
+  color: $black;
+  font-size: 2.4rem;
+  font-weight: bolder;
+}
+header .logo i{
+  color: $green;
+
+}
+
+header .navbar a{
+  font-size: 1.7rem;
+  border-radius:  .5rem;
+  padding: .5rem 1.5rem;
+  color: $black;
+}
+
+header .navbar a.active,
+header .navbar a:hover{
+  color: #fff;
+  background: $green;
+
+}
+
+header .icons i,
+header .icons a{
+  cursor: pointer;
+  margin-left: .5rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  width: 4.5rem;
+  text-align: center;
+  font-size: 1.7rem;
+  color: $black;
+  border-radius: 50%;
+  background: #eee;
+}
+
+header .icons i:hover,
+header .icons a:hover{
+  color: #fff;
+  background: $green;
+}
+
+
+
+/*media queries \\media je manja sirina ekrana*/
+header .icons #menu-bars{
+  display: none;
+}
+
+@media (max-width: 991px) {
+
+
+  html{
+    font-size: 55%;
+  }
+
+  header{
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  header .icons #menu-bars{/*kad predje velicina stranicec 768px pojavice se menu ikonica*/
+    display: block;
+  }
+
+  header .navbar{
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    right: -100%;
+    background: #fff;
+    border-top: .1rem solid rgba(0,0,0,.2);
+    border-bottom: .1rem solid rgba(0,0,0,.2);
+    padding: 1rem;
+    -webkit-transition: all 600ms;
+    transition: all 600ms;
+  }
+
+  header .navbar.opened{
+    right: 0;
+    left: 0;
+
+  }
+
+  head .navbar.active{
+    /*clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);*/
+  }
+
+  header .navbar a{
+    display: block;
+    padding: 1.5rem;
+    margin: 1rem;
+    font-size: 2rem;
+    background: #eee;
+
+  }
+
+}
+
+@media (max-width: 991px) {
+
+  html{
+    font-size: 50%;
+  }
+}
+
+
