@@ -99,6 +99,11 @@ header .icons #menu-bars{
 
 @media (max-width: 991px) {
 
+  .dishes .box-container .box img{
+    height: auto;
+    width: 100%;
+  }
+
 
   html{
     font-size: 55%;
