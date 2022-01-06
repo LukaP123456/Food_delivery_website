@@ -1,11 +1,12 @@
 section{
   padding: 2rem 9%;
 }
-
+/*na sta se odnosi ovaj deo ispod?*/
+/*
 section:nth-child(even){
-  background: #eeeeee;
+  background: #eee;
 }
-
+*/
 .home .home-slider .slide{
   display: flex;
   align-items: center;
@@ -39,4 +40,41 @@ section:nth-child(even){
   color: $black;
   font-size: 7rem;
 
+}
+
+.home .home-slider .slide .content p{
+  color: $light-color;
+  font-size: 2.2rem;
+  padding: .5rem 0;
+  line-height: 1.5;
+}
+
+
+.btn{
+  margin-top: 1rem;
+  display: inline-block;
+  font-size: 1.7rem;
+  color: #fff;
+  background: $black;
+  border-radius: .5rem;
+  cursor: pointer;
+  padding: .8rem 3rem;
+}
+
+.btn:hover{
+  background: $green;
+  letter-spacing: .1rem;
+}
+
+.carousel-control{
+  background-image: none !important;
+}
+
+.glyphicon-chevron-left:before, .glyphicon-chevron-right:before{
+  color: red;
+
+}
+
+.carousel-indicators .active{
+  background-color: deeppink !important;
 }

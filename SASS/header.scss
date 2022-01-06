@@ -31,11 +31,11 @@ header{
   right: 0;
   background-color: #fff;
   padding: 1rem 7%;
-  align-items: center;
+  align-items: center ;
   justify-content: space-between;
   z-index: 1000;
   box-shadow: $box-shadow;
-  display: flex;
+  display: flex !important;
 }
 
 header .logo{
@@ -47,12 +47,18 @@ header .logo i{
   color: $green;
 
 }
+.navbar{
+  display: flex;
+  align-items: center;
+  padding-top: 1.5rem;
+}
 
 header .navbar a{
   font-size: 1.7rem;
   border-radius:  .5rem;
   padding: .5rem 1.5rem;
   color: $black;
+
 }
 
 header .navbar a.active,
@@ -62,8 +68,10 @@ header .navbar a:hover{
 
 }
 
+
 header .icons i,
 header .icons a{
+
   cursor: pointer;
   margin-left: .5rem;
   height: 4.5rem;
