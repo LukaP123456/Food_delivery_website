@@ -1,0 +1,1 @@
+.footer .box-container{display:grid;grid-template-columns:repeat(auto-fit, minmax(25rem, 1fr));gap:1.5rem}.footer .box-container .box{padding:.5rem 0;font-size:2.5rem}
