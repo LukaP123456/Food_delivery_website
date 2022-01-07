@@ -688,30 +688,13 @@
 
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--footer sekcija kraj-->
 
+<!--loader deo-->
 
-
-
-
-
-
-
-
-
+<div class="loader-container">
+    <img src="img/sala.gif" alt="">
+</div>
 
 
 <!--js file link -->
