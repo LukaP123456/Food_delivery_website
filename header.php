@@ -34,6 +34,8 @@
         <a href="#menu">menu</a>
         <a href="#review">review</a>
         <a href="#order">order</a>
+        <a href="admin/admin.php">Admin login</a>
+
     </nav>
 
     <div class="icons">
