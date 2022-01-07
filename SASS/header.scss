@@ -99,19 +99,18 @@ header .icons #menu-bars{
 
 @media (max-width: 991px) {
 
-  .dishes .box-container .box img{
-    height: auto;
-    width: 100%;
-  }
-
-
   html{
     font-size: 55%;
   }
 
+
   header{
     padding: 1rem 2rem;
   }
+  section{
+    padding: 2rem;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -154,7 +153,24 @@ header .icons #menu-bars{
 
 }
 
-@media (max-width: 991px) {
+@media (max-width: 450px) {
+
+  html{
+    font-size: 50%;
+  }
+/*
+  .order form .inputBox .input{
+    width: 100%;
+  }
+*/
+  .dishes .box-container .box img{
+    height: auto;
+    width: 100%;
+  }
+
+  .order form .inputBox .input{
+    width: 100%;
+  }
 
   html{
     font-size: 50%;
