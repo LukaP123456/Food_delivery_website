@@ -13,6 +13,10 @@
     <!--font awesome cdn link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    <?php
+    include_once ('constants.php');
+    ?>
+
     <title>Los Pollos Hermanos admin page</title>
 
 </head>
@@ -41,16 +45,17 @@
     <div class="wrapper">
         <h1>Manage Admin</h1>
         <!-- Button za dodavanje admina -->
-        <br><br>
+
+
         <?php
             if (isset($_SESSION['add'])){
-               echo $_SESSION['add'];
+               echo $_SESSION['add'];//Prikazace poruku u zavisnosti da li je uspelo uneti admina u bazu
+               unset($_SESSION['add']);//izbrisace poruku nakon sto se prikaze
             }
 
-
-
-
         ?>
+
+        <br><br><br>
         <a href="add-admin.php" class="btn-primary">Add admin</a>
 
         <table class="tbl-full">
@@ -61,51 +66,52 @@
                 <th>Password</th>
             </tr>
 
-            <tr>
-                <td class="celija">1.</td>
-                <td class="celija">Luka Prcic</td>
-                <td class="celija">lukaPrcic</td>
-                <td class="celija">
-                    <a href="#" class="btn-primary">Update admin</a>
-                    <a href="#" class="btn-delete">Delete admin</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="celija">2.</td>
-                <td class="celija">Luka Prcic</td>
-                <td class="celija">lukaPrcic</td>
-                <td class="celija">
-                    <a href="#" class="btn-primary">Update admin</a>
-                    <a href="#" class="btn-delete">Delete admin</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="celija">3.</td>
-                <td class="celija">Luka Prcic</td>
-                <td class="celija">lukaPrcic</td>
-                <td class="celija">
-                    <a href="#" class="btn-primary">Update admin</a>
-                    <a href="#" class="btn-delete">Delete admin</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="celija">4.</td>
-                <td class="celija">Luka Prcic</td>
-                <td class="celija">lukaPrcic</td>
-                <td class="celija">
-                    <a href="#" class="btn-primary">Update admin</a>
-                    <a href="#" class="btn-delete">Delete admin</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="celija">5.</td>
-                <td class="celija">Luka Prcic</td>
-                <td class="celija">lukaPrcic</td>
-                <td class="celija">
-                    <a href="#" class="btn-primary">Update admin</a>
-                    <a href="#" class="btn-delete">Delete admin</a>
-                </td>
-            </tr>
+            <?php
+                //Kveri koji uzima sve iz tbl_admin
+                $sql = "SELECT * from tbl_admin";
+                $res = mysqli_query($conn,$sql);
+
+                //Proveri dal je kveri izvrsen
+                if ($res == true){
+                    //Izbroji redove da proveri da li imamo podatke u bazi
+                    $count = mysqli_num_rows($res);//fukcija za brojanje redova u bazi
+
+                    $sb = 1;//prikazuje serijski broj
+
+                    //provera broja redova
+                    if ($count > 0){
+                        //imamo podatke u bazi
+                        while ($rows = mysqli_fetch_assoc($res)){//uzima sve redove iz baze i stavlja u $rows
+                            $id = $rows['id'];
+                            $full_name =$rows['full_name'];
+                            $username = $rows['username'];
+
+                            //prikaz podataka u tabeli
+                            ?>
+                            <tr>
+                                <td class="celija"><?php echo $sb++;?></td>
+                                <td class="celija"><?php echo $full_name;?></td>
+                                <td class="celija"><?php echo $username;?></td>
+                                <td class="celija">
+                                    <a href="#" class="btn-primary">Update admin</a>
+                                    <a href="#" class="btn-delete">Delete admin</a>
+                                </td>
+                            </tr>
+
+                            <?php
+
+                        }
+                    }
+                    else{
+                        //nemamo podatke u bazi
+                    }
+                }
+
+
+            ?>
+
+
+
         </table>
     </div>
 </div>
@@ -113,9 +119,7 @@
 
 <!-- Tabela menadzera kraj-->
 
-<?php
-include_once ('config/constants.php');
-?>
+
 
 
 

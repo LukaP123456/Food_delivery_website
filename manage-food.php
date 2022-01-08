@@ -103,7 +103,7 @@
 <!-- Tabela menadzera kraj-->
 
 <?php
-include_once ('config/constants.php');
+include_once ('constants.php');
 ?>
 
 </body>

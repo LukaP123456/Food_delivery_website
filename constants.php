@@ -10,7 +10,7 @@
     const DB_USERNAME = 'root';
     const DB_PASSWORD = 'root';
     const DB_NAME = 'food-order';
-    const SITE_URL = 'http://localhost/DOSTAVA_PROJEKAT/main.php?';
+    const SITE_URL = 'http://localhost/DOSTAVA_PROJEKAT/';
 
 
     $conn = mysqli_connect(LOCALHOST,DB_USERNAME,DB_PASSWORD) or die(mysqli_error());//Konekcija za bazu

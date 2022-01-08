@@ -38,6 +38,13 @@
     <div class="wrapper">
         <h1>Add admin</h1>
 
+        <?php
+            if (isset($_SESSION['add'])){//prover dal je session setovan
+                echo $_SESSION['add'];//prikaze session poruku ako je setovan
+                unset($_SESSION['add']);//izbrisie sessions poruku
+            }
+        ?>
+
         <form action=""method="POST">
 
             <table class="tbl-30">
@@ -93,24 +100,25 @@
         //Excutujemo kveri i cuva podatke u bazu
         include ("constants.php");
 
-        $res = mysqli_query($conn,$sql) or die(mysqli_error()) ;
+        $res = mysqli_query($conn,$sql) or die(mysqli_error());
 
-        //Proverava da li je kveri izvrsen i data inserovan ako nije pokazace poruku
+        //Proverava da li je kveri izvrsen i data insertovan ako nije pokazace poruku
         if ($res == true){
             //data uneta u bazu
             //pravim session varijablu koja pokazuje poruku
-            $_session['add'] = "Admin added successfully";
+            $_SESSION['add'] = "Admin added successfully";
 
             //redirect page to manage-admin
-            header("location: ".SITE_URL.'/manage-admin.php');
+            header("location: ".SITE_URL."manage-admin.php");
+
 
         }
         else{
-            //pravim session varijablu koja pokazuje poruku
-            $_session['add'] = "Failed to add admin";
+            $_SESSION['add'] = "Failed to add admin";
 
             //redirect page to add-admin
-            header("location: ".SITE_URL.'/add-admin.php');
+            header("location: ".SITE_URL."add-admin.php");
+
 
         }
 
