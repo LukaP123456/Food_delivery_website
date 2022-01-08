@@ -1,5 +1,85 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
 @import "varijable";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+.tbl-30{
+  width: 30%;
+  font-size: 2rem;
+  border-collapse: collapse;
+}
+.tbl-30 td{
+  border-radius: 5px;
+
+}
+input{
+  background-color: #ffffff;
+  border: 1px solid black;
+}
+
+.add-btn{
+  color: #fff;
+  background: darkblue;
+  padding: 2rem;
+  border-radius: 10px;
+  font-size: 1.7rem;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+.add-btn:hover{
+  background: blue;
+
+}
+
+.tbl-full{
+  width: 100%;
+  font-size: 2rem;
+}
+
+.celija{
+  text-align: center;
+  padding: 2rem;
+}
+
+table tr th{
+  margin-left: 5rem;
+  border-bottom: black solid;
+  padding: 1%;
+}
+
+.btn-delete{
+  color: #fff;
+  background: darkred;
+  padding: 2rem;
+  border-radius: 10px;
+  font-size: 1.7rem;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 15rem;
+
+}
+
+.btn-delete:hover{
+  background: red;
+
+}
+
+.btn-primary{
+  color: #fff;
+  background: darkblue;
+  padding: 2rem;
+  border-radius: 10px;
+  font-size: 1.7rem;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 15rem;
+}
+.btn-primary:hover{
+  background: blue;
+
+}
+/*******************************************/
+h1{
+  font-size: 5rem;
+}
 
 *{
   font-family: 'Nunito', sans-serif;
@@ -14,6 +94,7 @@
 
 
 html{
+  margin: 3rem;
   font-size: 62.5%;
   overflow-x: hidden;
   scroll-padding-top: 5.5rem;/*kad dodjes do polovine elementa centrirace ga*/
@@ -66,7 +147,6 @@ header .navbar a:hover{
 }
 
 
-header .icons i,
 header .icons a{
 
   cursor: pointer;
@@ -81,12 +161,15 @@ header .icons a{
   background: #eee;
 }
 
-header .icons i:hover,
 header .icons a:hover{
   color: #fff;
   background: $green;
 }
 
+.menu .box-container .box .content{
+  padding: 1rem ;
+  padding-top: 0;
+}
 
 
 /*media queries \\media je manja sirina ekrana*/
@@ -155,11 +238,11 @@ header .icons #menu-bars{
   html{
     font-size: 50%;
   }
-/*
-  .order form .inputBox .input{
-    width: 100%;
-  }
-*/
+  /*
+    .order form .inputBox .input{
+      width: 100%;
+    }
+  */
   .dishes .box-container .box img{
     height: auto;
     width: 100%;

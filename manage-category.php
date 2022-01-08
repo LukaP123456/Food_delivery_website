@@ -37,8 +37,10 @@
 <div class="content">
     <div class="main-content">
         <div class="wrapper">
-            <h1>Manage Order</h1>
+            <h1>Manage Category</h1>
+            <!-- Button za dodavanje kateogirje -->
             <br><br>
+            <a href="#" class="btn-primary">Add category</a>
 
             <table class="tbl-full">
                 <tr>
@@ -100,9 +102,6 @@
 
 <!-- Tabela menadzera kraj-->
 
-<?php
-include_once ('config/constants.php');
-?>
 
 </body>
 </html>
