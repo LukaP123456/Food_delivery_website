@@ -29,12 +29,12 @@
     <a href="#" class="logo"><i class="fas fa-utensils"></i>resto.</a>
     <nav class="navbar">
         <a class="active" href="#home">home</a>
-        <a href="#dishes">dishes</a>
+        <a href="#dishes" >dishes</a>
         <a href="#about">about</a>
         <a href="#menu">menu</a>
         <a href="#review">review</a>
         <a href="#order">order</a>
-        <a href="admin/admin.php">Admin login</a>
+        <a href="manage-admin.php">Admin login</a>
 
     </nav>
 
