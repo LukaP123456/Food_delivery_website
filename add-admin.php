@@ -92,7 +92,7 @@
         //Uzimamo podatke iz baze
         $full_name = $_POST['full_name'];
         $username = $_POST['username'];
-        $password = md5($_POST['password']);//md5 sluzi za enkripciju sifre
+        $password = password_hash($_POST['password'],PASSWORD_DEFAULT);//password_hash sluzi za enkripciju sifre
 
         //SQL kveri koji stavlja podatke u bazu
         $sql = "INSERT INTO tbl_admin SET full_name ='$full_name',username = '$username', password = '$password' ";
@@ -106,7 +106,7 @@
         if ($res == true){
             //data uneta u bazu
             //pravim session varijablu koja pokazuje poruku
-            $_SESSION['add'] = "Admin added successfully";
+            $_SESSION['add'] = "<div class='add-message'>Admin added successfully</div>";
 
             //redirect page to manage-admin
             header("location: ".SITE_URL."manage-admin.php");
@@ -114,7 +114,7 @@
 
         }
         else{
-            $_SESSION['add'] = "Failed to add admin";
+            $_SESSION['add'] = "<div class='add-message'>Failed to add admin</div>";
 
             //redirect page to add-admin
             header("location: ".SITE_URL."add-admin.php");

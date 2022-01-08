@@ -42,7 +42,7 @@ input{
 table tr th{
   margin-left: 5rem;
   border-bottom: black solid;
-  padding: 1%;
+  padding: 3rem;
 }
 
 .btn-delete{
@@ -70,12 +70,43 @@ table tr th{
   font-size: 1.7rem;
   text-decoration: none;
   font-weight: bold;
-  margin-top: 15rem;
+  margin-top: 2rem;
 }
 .btn-primary:hover{
   background: blue;
 
 }
+.succes{
+  color: #4cd137;
+  font-size: 5rem;
+
+}
+.error{
+  color: #e84118;
+  font-size: 5rem;
+
+}
+.add-message{
+  font-size: 5rem;
+  color: #4cd137;
+
+}
+
+.btn-password{
+  color: #fff;
+  background: #44bd32;
+  padding: 2rem;
+  border-radius: 10px;
+  font-size: 1.7rem;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+.btn-password:hover{
+  background: #4cd137;
+
+}
+
 /*******************************************/
 h1{
   font-size: 5rem;

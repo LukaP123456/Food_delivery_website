@@ -53,6 +53,38 @@
                unset($_SESSION['add']);//izbrisace poruku nakon sto se prikaze
             }
 
+            if (isset($_SESSION['delete']))
+            {
+                echo $_SESSION['delete'];
+                unset($_SESSION['delete']);
+            }
+
+            if (isset($_SESSION['update']))
+            {
+                echo $_SESSION['update'];
+                unset($_SESSION['update']);
+            }
+
+            if (isset($_SESSION['user-not-found']))
+            {
+                echo $_SESSION['user-not-found'];
+                unset ($_SESSION['user-not-found']);
+
+            }
+
+            if (isset($_SESSION['password-not-match']))
+            {
+                echo $_SESSION['password-not-match'];
+                unset ($_SESSION['password-not-match']);
+
+            }
+            if (isset($_SESSION['change-pwd']))
+            {
+                echo $_SESSION['change-pwd'];
+                unset ($_SESSION['change-pwd']);
+
+            }
+
         ?>
 
         <br><br><br>
@@ -63,7 +95,7 @@
                 <th>Serial number</th>
                 <th>Full Name</th>
                 <th>Username</th>
-                <th>Password</th>
+                <th>Action</th>
             </tr>
 
             <?php
@@ -93,8 +125,9 @@
                                 <td class="celija"><?php echo $full_name;?></td>
                                 <td class="celija"><?php echo $username;?></td>
                                 <td class="celija">
-                                    <a href="#" class="btn-primary">Update admin</a>
-                                    <a href="#" class="btn-delete">Delete admin</a>
+                                    <a href="<?php echo SITE_URL;?>update-password.php?id=<?php echo $id; ?>" class="btn-password">Change password</a>
+                                    <a href="<?php echo SITE_URL;?>update-admin.php?id=<?php echo $id; ?>" class="btn-primary">Update admin</a>
+                                    <a href="<?php echo SITE_URL; ?>/delete-admin.php?id=<?php echo $id;?>" class="btn-delete">Delete admin</a>
                                 </td>
                             </tr>
 
