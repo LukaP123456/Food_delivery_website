@@ -35,6 +35,16 @@
         <a href="#review">review</a>
         <a href="#order">order</a>
         <a href="manage-admin.php">Admin login</a>
+        <?php
+        session_start();
+
+        if (isset($_SESSION['user']))
+        {
+            echo " <a href='logout.php'>Admin logout</a>";
+        }
+        ?>
+
+
 
     </nav>
 

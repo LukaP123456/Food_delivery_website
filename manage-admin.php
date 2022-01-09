@@ -14,8 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <?php
-    include_once ('constants.php');
+        include_once ('constants.php');
+        include "login-check.php";
     ?>
+
+
 
     <title>Los Pollos Hermanos admin page</title>
 
@@ -33,6 +36,8 @@
         <a href="manage-category.php">Manage category</a>
         <a href="manage-order.php">Manage order</a>
         <a href="manage-admin.php">Admin pocetna</a>
+        <a href="logout.php">Admin logout</a>
+
 
     </nav>
 
@@ -83,6 +88,12 @@
                 echo $_SESSION['change-pwd'];
                 unset ($_SESSION['change-pwd']);
 
+            }
+
+            if (isset($_SESSION['login']))
+            {
+                echo $_SESSION['login'];
+                unset ($_SESSION['login']);
             }
 
         ?>
@@ -146,6 +157,7 @@
 
 
         </table>
+
     </div>
 </div>
 </div>
