@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="CSS/admin.css">
     <!--font awesome cdn link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <?php
+        include "constants.php";
+
+    ?>
 
     <title>Los Pollos Hermanos admin page</title>
 </head>
@@ -40,61 +44,106 @@
             <h1>Manage Category</h1>
             <!-- Button za dodavanje kateogirje -->
             <br><br>
-            <a href="#" class="btn-primary">Add category</a>
+            <?php
+                if (isset($_SESSION['add'])) {
+                    echo $_SESSION['add'];
+                    unset($_SESSION['add']);
+                }
+            ?>
+
+
+            <a href="<?php echo SITE_URL;?>/add-category.php" class="btn-primary">Add category</a>
 
             <table class="tbl-full">
                 <tr>
                     <th>Serial number</th>
-                    <th>Full Name</th>
-                    <th>Username</th>
-                    <th>Password</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Featured</th>
+                    <th>Active</th>
+                    <th>Actions</th>
                 </tr>
 
-                <tr>
-                    <td class="celija">1.</td>
-                    <td class="celija">Luka Prcic</td>
-                    <td class="celija">lukaPrcic</td>
-                    <td class="celija">
-                        <a href="#" class="btn-primary">Update admin</a>
-                        <a href="#" class="btn-delete">Delete admin</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celija">2.</td>
-                    <td class="celija">Luka Prcic</td>
-                    <td class="celija">lukaPrcic</td>
-                    <td class="celija">
-                        <a href="#" class="btn-primary">Update admin</a>
-                        <a href="#" class="btn-delete">Delete admin</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celija">3.</td>
-                    <td class="celija">Luka Prcic</td>
-                    <td class="celija">lukaPrcic</td>
-                    <td class="celija">
-                        <a href="#" class="btn-primary">Update admin</a>
-                        <a href="#" class="btn-delete">Delete admin</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celija">4.</td>
-                    <td class="celija">Luka Prcic</td>
-                    <td class="celija">lukaPrcic</td>
-                    <td class="celija">
-                        <a href="#" class="btn-primary">Update admin</a>
-                        <a href="#" class="btn-delete">Delete admin</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celija">5.</td>
-                    <td class="celija">Luka Prcic</td>
-                    <td class="celija">lukaPrcic</td>
-                    <td class="celija">
-                        <a href="#" class="btn-primary">Update admin</a>
-                        <a href="#" class="btn-delete">Delete admin</a>
-                    </td>
-                </tr>
+                <?php
+                    //Kveri izvlaci sve iz tabele
+                    $sql = "SELECT * from tbl_category";
+                    //Izvrsavanje kverija
+                    $res = mysqli_query($conn,$sql);
+                    //Broji redove kao proveru kverija tj da li je tabela popunjena
+                    $count = mysqli_num_rows($res);
+
+                    //Serial number varijabla
+                    $sn = 1;
+
+                    if ($count > 0)
+                    {
+                        //puna tabela
+                        //Uzima podatke i prikazuje ih
+                        while ($row = mysqli_fetch_assoc($res))
+                        {
+                            $id = $row['id'];
+                            $title = $row['title'];
+                            $image_name = $row['image_name'];
+                            $featured = $row['featured'];
+                            $active = $row['active'];
+                            ?>
+
+                            <tr>
+                                <td class="celija"><?php echo $sn++; ?>.</td>
+                                <td class="celija"><?php echo $title; ?></td>
+
+                                <td class="celija">
+                                    <?php
+                                    if ($image_name != "")
+                                    {
+                                        ?>
+
+                                        <img src="<?php echo SITE_URL?>img/category/<?php echo $image_name ?>" width="200px" >
+
+                                        <?php
+
+                                    }
+                                    else
+                                    {
+                                        echo "<div class='error'> Image not added </div>";
+                                    }
+
+
+                                    ?>
+                                </td>
+
+                                <td class="celija"><?php echo $featured; ?></td>
+                                <td class="celija"><?php echo $active; ?></td>
+                                <td class="celija">
+                                    <a href="#" class="btn-primary">Update category</a>
+                                    <a href="#" class="btn-delete">Delete category</a>
+                                </td>
+
+                            </tr>
+
+                                <?php
+
+                        }
+                    }
+                    else
+                    {
+                        //prazna tabela
+                        //Prikaz error poruke unutar tabele
+                        ?>
+
+                        <tr>
+                            <td colspan="6"><div class="error" > No category added</div></td>
+                        </tr>
+
+                        <?php
+                    }
+
+
+                ?>
+
+
+
+
             </table>
         </div>
     </div>
