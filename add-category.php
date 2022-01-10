@@ -46,11 +46,11 @@
                     unset($_SESSION['add']);
                 }
 
-            if (isset($_SESSION['upload']))
-            {
-                echo $_POST['upload'];
-                unset($_SESSION['upload']);
-            }
+                if (isset($_SESSION['upload']))
+                {
+                    echo $_POST['upload'];
+                    unset($_SESSION['upload']);
+                }
 
             ?>
             <br><br>
@@ -69,7 +69,7 @@
                    <tr>
                        <td>Select image:</td>
                        <td>
-                           <input type="file" name="image">
+                           <input type="file" name="image" accept="image/*" >
                        </td>
                    </tr>
 
@@ -125,27 +125,32 @@
                     }
 
                     //Provera da li slika selektovana i setuje ime slike
-                    print_r($_FILES['image']);//print_r prikazuje vrednost niza echo to nece
+                    //print_r($_FILES['image']);//print_r prikazuje vrednost niza echo to nece
+                    //print_r(isset($_FILES['image']['name']));
 
                     //die();
 
 
-                    if (isset($_FILES['image']['name']))
+
+                    //image je file type a name je sam naziv fajla
+                    //ako je 'size' == sa nulom onda to znaci da nema slike ako je razlicito od nule znaci da ima slike i zato onda kasnije dobijem da je image name prazan
+                    if (isset($_FILES['image']['name']) && $_FILES['image']['size'] != 0)
                     {
-                       //ako $_FILES ima naziv u arraju slika ce se uploadat
+                        //ako $_FILES ima naziv u arraju slika ce se uploadat
                         $image_name = $_FILES['image']['name'];
 
+                        //tmp_name uzima source path slike
                         $source_path = $_FILES['image']['tmp_name'];
 
                         $destination_path = "img/category/".$image_name;
-                        //Upload
+                        //Upload slike
                         $upload = move_uploaded_file($source_path,$destination_path);
 
                         //Provera da li je slika uploadovana, ako nije zaustavljamo proces sa redirect porukom
                         if ($upload == false)
                         {
                             $_SESSION['upload'] = "'<div class='error'> Failed to upload image. </div>'";
-                            header("location:".SITE_URL."add-category");
+                            header("location:".SITE_URL."add-category.php");
                             //zaustavlja proces
                             die();
                         }
@@ -153,7 +158,8 @@
                     }
                     else
                     {
-                        $image_name = "";
+                        //ako slika nije uploadovana ime ce biti prazno
+                        $image_name = " ";
                     }
 
 

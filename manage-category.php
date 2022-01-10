@@ -49,10 +49,22 @@
                     echo $_SESSION['add'];
                     unset($_SESSION['add']);
                 }
+
+                if (isset($_SESSION['remove']))
+                {
+                    echo $_SESSION['remove'];
+                    unset($_SESSION['remove']);
+                }
+
+                if (isset($_SESSION['delete']))
+                {
+                    echo $_SESSION['delete'];
+                    unset($_SESSION['delete']);
+                }
             ?>
 
 
-            <a href="<?php echo SITE_URL;?>/add-category.php" class="btn-primary">Add category</a>
+            <a href="<?php echo SITE_URL;?>add-category.php" class="btn-primary">Add category</a>
 
             <table class="tbl-full">
                 <tr>
@@ -67,8 +79,10 @@
                 <?php
                     //Kveri izvlaci sve iz tabele
                     $sql = "SELECT * from tbl_category";
+
                     //Izvrsavanje kverija
                     $res = mysqli_query($conn,$sql);
+
                     //Broji redove kao proveru kverija tj da li je tabela popunjena
                     $count = mysqli_num_rows($res);
 
@@ -94,8 +108,9 @@
 
                                 <td class="celija">
                                     <?php
-                                    if ($image_name != "")
+                                    if ($image_name != " ")
                                     {
+                                        //Ako imamo sliku pokazu sliku
                                         ?>
 
                                         <img src="<?php echo SITE_URL?>img/category/<?php echo $image_name ?>" width="200px" >
@@ -105,6 +120,7 @@
                                     }
                                     else
                                     {
+                                        //Ako nemamo sliku pokazi poruku
                                         echo "<div class='error'> Image not added </div>";
                                     }
 
@@ -116,7 +132,8 @@
                                 <td class="celija"><?php echo $active; ?></td>
                                 <td class="celija">
                                     <a href="#" class="btn-primary">Update category</a>
-                                    <a href="#" class="btn-delete">Delete category</a>
+                                    <!-- umecanjem PHP mogu dinamicki dodati varijable -->
+                                    <a href="<?php echo SITE_URL; ?>delete-category.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name;?>" class="btn-delete">Delete category</a>
                                 </td>
 
                             </tr>
