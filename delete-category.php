@@ -8,6 +8,8 @@
     //Provera da li je id i image_name vrednost setovano
     //Ukoliko nisu setovani npr neko pokusava preko url da izbrise neku kategoriju nece moci jer id i image_name nisu setovani
     //vratice ih na manage-category.php stranu
+
+
     if (isset($_GET['id']) && isset($_GET['image_name']))
     {
         echo "Get value and delete";
@@ -16,7 +18,9 @@
         $image_name = $_GET['image_name'];
 
 
-        if ($image_name != "")
+
+
+        if ($image_name != "" && $_FILES['size'] > 0  )
         {
             $path = "img/category/".$image_name;
 
@@ -32,9 +36,11 @@
                 die();
             }
         }
+
         //Sql upit za brisanje slike iz baze
         //Ukoliko nemam image_name brise na osnovu id podatak iz tabele
-        $sql = "DELETE from tbl_category where id = $id";
+
+        $sql = "DELETE from tbl_category where id = $id ";
 
         //Izvrsavanje kverija
         $res = mysqli_query($conn,$sql);
@@ -57,5 +63,8 @@
     {
         header("location:".SITE_URL."manage-category.php");
     }
+
+
+
 
  ?>

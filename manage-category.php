@@ -61,6 +61,12 @@
                     echo $_SESSION['delete'];
                     unset($_SESSION['delete']);
                 }
+
+                if (isset($_SESSION['no-category-found']))
+                {
+                    echo $_SESSION['no-category-found'];
+                    unset($_SESSION['no-category-found']);
+                }
             ?>
 
 
@@ -113,7 +119,7 @@
                                         //Ako imamo sliku pokazu sliku
                                         ?>
 
-                                        <img src="<?php echo SITE_URL?>img/category/<?php echo $image_name ?>" width="200px" >
+                                        <img src="<?php echo SITE_URL?>img/category/<?php echo $image_name; ?>" width="200px" >
 
                                         <?php
 
@@ -131,9 +137,9 @@
                                 <td class="celija"><?php echo $featured; ?></td>
                                 <td class="celija"><?php echo $active; ?></td>
                                 <td class="celija">
-                                    <a href="#" class="btn-primary">Update category</a>
+                                    <a href="<?php echo SITE_URL; ?>update-category.php?id=<?php echo $id ?>" class="btn-primary">Update category</a>
                                     <!-- umecanjem PHP mogu dinamicki dodati varijable -->
-                                    <a href="<?php echo SITE_URL; ?>delete-category.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name;?>" class="btn-delete">Delete category</a>
+                                    <a href="<?php echo SITE_URL; ?>delete-category.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-delete">Delete category</a>
                                 </td>
 
                             </tr>
