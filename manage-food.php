@@ -40,7 +40,7 @@
             <h1>Manage Food</h1>
             <!-- Button za dodavanje hrane -->
             <br><br>
-            <a href="#" class="btn-primary">Add food</a>
+            <a href="add-food.php" class="btn-primary">Add food</a>
 
             <table class="tbl-full">
                 <tr>

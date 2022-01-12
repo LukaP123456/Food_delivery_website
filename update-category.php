@@ -12,9 +12,7 @@ include "admin-header.php";
         <br><br>
 
         <?php
-            //$current_image = "";
             //provera da li je $id setovan
-            $current_image = " ";
             if (isset($_GET['id']))
             {
                 $id = $_GET['id'];
@@ -30,7 +28,7 @@ include "admin-header.php";
                     $row = mysqli_fetch_assoc($res);
                     $title = $row['title'];
                     $current_image = $row['image_name'];
-                    $ruta = "./category/".$current_image."";
+                    //$ruta = "./category/".$current_image."";
                     $featured = $row['featured'];
                     $active = $row['active'];
 
@@ -39,17 +37,18 @@ include "admin-header.php";
                 {
                     $_SESSION['no-category-found'] = '<div class="error"> Category not found </div>';
                     header("location:".SITE_URL.'manage-category.php');
-                    $current_image = "";
+                    //$current_image = " ";
                 }
             }
             else
             {
                 header('location:'.SITE_URL.'manage-category.php');
+                $_SESSION['id-not-found'] = '<div class="error"> Id not found  </div>';
             }
 
         ?>
 
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             <table class="tbl-30">
                 <tr>
                     <td>Title</td>
@@ -62,20 +61,20 @@ include "admin-header.php";
                         <?php
                             //prikaz slike
 
-                            if ($current_image !=" ")
+                            if ($current_image !="")
                             {
                                 //prikaz slike
 
                                 ?>
-
-                                <img src="<?php echo SITE_URL ?>img/category/<?php echo $current_image ?> " alt="" width="150px">
+                                <img src="<?php echo SITE_URL; ?>img/category/<?php echo $current_image; ?> " alt="" width="150px">
                                 <?php
 
 
                             }
-                            if ($current_image == " ")//postoji razila izmedju "" i " "
+                            if ($current_image == "")//postoji razila izmedju "" i " "
                             {
                                 echo "<div class='error'> Image not Added </div> ";
+
                             }
 
 
@@ -140,7 +139,7 @@ include "admin-header.php";
                     $image_name = $_FILES['image']['name'];
                     //provera da li postoji ta slika
                     //sa ovim drugim ifom ako selektujem neku sliku i posle cancelujem taj selekt slika nece ostati selektovana
-                    if ($image_name != " ")
+                    if ($image_name != "")
                     {
                         //upload slike
                         $image_name = $_FILES['image']['name'];
@@ -153,15 +152,17 @@ include "admin-header.php";
                         $upload = move_uploaded_file($source_path,$destination_path);
 
                         //Provera da li je slika uploadovana, ako nije zaustavljamo proces sa redirect porukom
-                        if ($upload == false)
+                        if ($upload == false && $image_name != "" )
                         {
-                            $_SESSION['upload'] = "'<div class='error'> Failed to upload image. </div>'";
+                            $_SESSION['upload'] = "'<div class='error'> Failed to upload image.<?php   printf( $current_image) ; ?> </div>'";
                             header("location:".SITE_URL."manage-category.php");
                             //zaustavlja proces
+
                             die();
                         }
+
                         //brisanje stare slike tj current_image
-                        if ($current_image != " ")
+                        if ($current_image != "")
                         {
                             $remove_path = "img/category/".$current_image;
                             $remove = unlink($remove_path);
@@ -174,21 +175,45 @@ include "admin-header.php";
                                 header('location:'.SITE_URL.'manage-category.php');
                                 die();
                             }
+
+                            //updejt baze
+                            $sql2 = "update tbl_category set title = '$title', image_name = '$image_name', featured = '$featured', active = '$active' where id = $id ";
+
+                            $res2 = mysqli_query($conn,$sql2);
+
+
+
+                            //redirect na manage-category
+                            if ($res2 == true)
+                            {
+                                //updejtovalo
+                                $_SESSION['update'] = '<div class="succes"> category updated successfully. </div>';
+                                header("location:".SITE_URL."manage-category.php");
+                            }
+                            else
+                            {
+                                //nije updejtovalo
+                                $_SESSION['update'] = '<div class="error"> failed to update category. </div>';
+                                header("location:".SITE_URL."manage-category.php");
+                            }
                         }
 
                     }
+
                     else
                     {
                         $image_name = $current_image;
                     }
+
                 }
                 else
                 {
                     $image_name = $current_image;
+
                 }
 
-                //updejt baze
-                $sql2 = "update tbl_category set title = '$title', image_name = '$image_name', featured = '$featured', active = '$active' where id = $id ";
+                //updejt baze kad se ne ubaci slika
+                $sql2 = "update tbl_category set title = '$title', featured = '$featured', active = '$active' where id = $id ";
 
                 $res2 = mysqli_query($conn,$sql2);
 
