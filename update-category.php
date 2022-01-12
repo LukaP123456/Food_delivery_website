@@ -1,5 +1,6 @@
 <?php
 include "admin-header.php";
+
 ?>
 
 <!-- Telo update-category start-->
@@ -27,10 +28,11 @@ include "admin-header.php";
                 if ($count == 1)
                 {
                     $row = mysqli_fetch_assoc($res);
-                    $title = $row["title"];
-                    $current_image = $row["image_name"];
-                    $featured = $row["featured"];
-                    $active = $row["active"];
+                    $title = $row['title'];
+                    $current_image = $row['image_name'];
+                    $ruta = "./category/".$current_image."";
+                    $featured = $row['featured'];
+                    $active = $row['active'];
 
                 }
                 else
@@ -47,7 +49,7 @@ include "admin-header.php";
 
         ?>
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
             <table class="tbl-30">
                 <tr>
                     <td>Title</td>
@@ -60,19 +62,23 @@ include "admin-header.php";
                         <?php
                             //prikaz slike
 
-                            if ($current_image !="")
+                            if ($current_image !=" ")
                             {
                                 //prikaz slike
+
                                 ?>
-                                <img src="<?php echo SITE_URL; ?>category/<?php echo $current_image; ?> " alt="">
+
+                                <img src="<?php echo SITE_URL ?>img/category/<?php echo $current_image ?> " alt="" width="150px">
                                 <?php
 
+
                             }
-                            else
+                            if ($current_image == " ")//postoji razila izmedju "" i " "
                             {
-                                //prikaz poruke
                                 echo "<div class='error'> Image not Added </div> ";
                             }
+
+
 
                         ?>
                     </td>
@@ -88,21 +94,24 @@ include "admin-header.php";
                 <tr>
                     <td>Featured:</td>
                     <td>
-                        <input type="radio" name="featured" value="Yes"> Yes
-                        <input type="radio" name="featured" value="No"> No
+                        <!-- U zavisnosti od toga sta featured dobije iz baze bice checkovan taj radio button $featured uzima vrednost iz baze u add-category -->
+                        <input <?php if ($featured == "Yes"){echo "checked";} ?> type="radio" name="featured" value="Yes"> Yes
+                        <input <?php if ($featured == "No"){echo "checked";} ?> type="radio" name="featured" value="No"> No
                     </td>
                 </tr>
 
                 <tr>
                     <td>Active: </td>
                     <td>
-                        <input type="radio" name="active" value="Yes"> Yes
-                        <input type="radio" name="active" value="No"> No
+                        <input <?php if ($active == "Yes"){echo "checked";} ?> type="radio" name="active" value="Yes"> Yes
+                        <input <?php if ($active == "No"){echo "checked";} ?> type="radio" name="active" value="No"> No
                     </td>
                 </tr>
                 
                 <tr>
                     <td>
+                        <input type="hidden" name="current_image" value="<?php echo $current_image; ?>">
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="submit" name="update" class="btn-primary">
                     </td>
                 </tr>
@@ -111,6 +120,47 @@ include "admin-header.php";
 
             </table>
         </form>
+
+        <?php
+
+            if (isset($_POST['update']))
+            {
+                //uzeti podatke iz forme
+                $id = $_POST['id'];
+                $title = $_GET['title'];
+                $current_image = $_POST['current_image'];
+                $featured = $_POST['featured'];
+                $active = $_POST['active'];
+
+                //updejt slike u novu sliku
+
+
+                //updejt baze
+                $sql2 = "update tbl_category set title = '$title', featured = '$featured' active = '$active', where id = $id ";
+
+                $res2 = mysqli_query($conn,$sql2);
+
+
+
+                //redirect na manage-category
+                if ($res2 == true)
+                {
+                    //updejtovalo
+                    $_SESSION['update'] = '<div class="succes"> category updated successfully. </div>';
+                    header("location:".SITE_URL."manage-category.php");
+                }
+                else
+                {
+                    //nije updejtovalo
+                    $_SESSION['update'] = '<div class="error"> failed to update category. </div>';
+                    header("location:".SITE_URL."manage-category.php");
+                }
+            }
+
+
+
+
+        ?>
     </div>
 </div>
 
