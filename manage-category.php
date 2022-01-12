@@ -42,6 +42,7 @@
     <div class="main-content">
         <div class="wrapper">
             <h1>Manage Category</h1>
+            <p class="pasus">Notice! If the name of the picture is the same for multiple categories when updating or deleting that category you will delete the picture for other categories as well</p>
             <!-- Button za dodavanje kateogirje -->
             <br><br>
             <?php
@@ -72,6 +73,18 @@
                 {
                     echo $_SESSION['update'];
                     unset($_SESSION['update']);
+                }
+
+                if (isset($_SESSION['upload']))
+                {
+                    echo $_SESSION['upload'];
+                    unset($_SESSION['upload']);
+                }
+
+                if (isset($_SESSION['failed-remove']))
+                {
+                    echo $_SESSION['failed-remove'];
+                    unset($_SESSION['failed-remove']);
                 }
             ?>
 

@@ -127,16 +127,68 @@ include "admin-header.php";
             {
                 //uzeti podatke iz forme
                 $id = $_POST['id'];
-                $title = $_GET['title'];
+                $title = $_POST['title'];
                 $current_image = $_POST['current_image'];
                 $featured = $_POST['featured'];
                 $active = $_POST['active'];
 
                 //updejt slike u novu sliku
+                //provera da li je slika selektovana
+                if (isset($_FILES['image']['name']))
+                {
+                    //uzima sliku
+                    $image_name = $_FILES['image']['name'];
+                    //provera da li postoji ta slika
+                    //sa ovim drugim ifom ako selektujem neku sliku i posle cancelujem taj selekt slika nece ostati selektovana
+                    if ($image_name != " ")
+                    {
+                        //upload slike
+                        $image_name = $_FILES['image']['name'];
 
+                        //tmp_name uzima source path slike
+                        $source_path = $_FILES['image']['tmp_name'];
+
+                        $destination_path = "img/category/".$image_name;
+                        //Upload slike
+                        $upload = move_uploaded_file($source_path,$destination_path);
+
+                        //Provera da li je slika uploadovana, ako nije zaustavljamo proces sa redirect porukom
+                        if ($upload == false)
+                        {
+                            $_SESSION['upload'] = "'<div class='error'> Failed to upload image. </div>'";
+                            header("location:".SITE_URL."manage-category.php");
+                            //zaustavlja proces
+                            die();
+                        }
+                        //brisanje stare slike tj current_image
+                        if ($current_image != " ")
+                        {
+                            $remove_path = "img/category/".$current_image;
+                            $remove = unlink($remove_path);
+
+                            //provera da li je slika uklonjena
+                            if ($remove == false)
+                            {
+                                //failed
+                                $_SESSION['failed-remove'] = "<div class='error'> Failed to remove current image  </div>";
+                                header('location:'.SITE_URL.'manage-category.php');
+                                die();
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        $image_name = $current_image;
+                    }
+                }
+                else
+                {
+                    $image_name = $current_image;
+                }
 
                 //updejt baze
-                $sql2 = "update tbl_category set title = '$title', featured = '$featured' active = '$active', where id = $id ";
+                $sql2 = "update tbl_category set title = '$title', image_name = '$image_name', featured = '$featured', active = '$active' where id = $id ";
 
                 $res2 = mysqli_query($conn,$sql2);
 

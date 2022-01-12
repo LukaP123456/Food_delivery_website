@@ -37,6 +37,7 @@
     <div class="main-content">
         <div class="warpper">
             <h1>Add category</h1>
+
             <br><br>
 
             <?php
