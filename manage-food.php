@@ -40,7 +40,18 @@
             <h1>Manage Food</h1>
             <!-- Button za dodavanje hrane -->
             <br><br>
-            <a href="add-food.php" class="btn-primary">Add food</a>
+<?php
+
+                if (isset($_SESSION['add2']))
+                {
+                    echo $_SESSION['add2'];
+                    unset($_SESSION['add2']);
+                }
+
+
+            ?><a href="add-food.php" class="btn-primary">Add food</a>
+
+
 
             <table class="tbl-full">
                 <tr>

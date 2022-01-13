@@ -1,13 +1,26 @@
 <?php
 include "admin-header.php";
-?>
 
-    <div class="main-content">
+//ob_start();
+
+
+
+?><div class="main-content">
         <div class="wrapper">
             <h1>Add Food</h1>
 
             <br><br>
-            <!-- enctype jer uplodujem slike -->
+
+<?php
+                if (isset($_SESSION['upload']))
+                {
+                    echo $_SESSION['upload'];
+                    unset($_SESSION['upload']);
+                }
+
+
+
+            ?> <!-- enctype jer uplodujem slike -->
             <form action="" method="POST" enctype="multipart/form-data">
 
                 <table class="tbl-30">
@@ -43,7 +56,7 @@ include "admin-header.php";
                         <td>Category:</td>
                         <td>
                             <select name="category" class="text-area-drop-down">
-                                <?php
+<?php
                                     //prikaz podataka iz baze
                                     //kveri
                                     //Na osnovu da li je kateogirja aktivna ili ne prikazace se kategorija iz baze
@@ -60,25 +73,21 @@ include "admin-header.php";
                                             //uzima podatke o kategoriji iz baze
                                             $id = $row['id'];
                                             $title = $row['title'];
-                                            ?>
-                                            <option value="<?php echo $id; ?>"><?php echo $title; ?></option>
-                                            <?php
+
+                                            ?><option value="<?php echo $id; ?>"><?php echo $title; ?></option>
+<?php
                                         }
                                     }
                                     else
                                     {
                                         //Ukoliko nemamo kategoriju
-                                        ?>
-                                        <option value="0">No category found</option>
-                                        <?php
+
+                                       echo "<option value='0'>No category found</option>";
+
                                     }
 
 
-
-
-                                ?>
-
-                            </select>
+                          ?></select>
                         </td>
                     </tr>
 
@@ -109,5 +118,100 @@ include "admin-header.php";
 
             </form>
 
-        </div>
+<?php
+
+                //insertovanje u bazu
+                //provera da li je dugme kliknuto
+                if (isset($_POST['submit']))
+                {
+                    //dodavanje hrane u bazu
+                    //uzimanje podataka iz forme
+                    $title = $_POST['title'];
+                    $description = $_POST['description'];
+                    $price = $_POST['price'];
+                    $category = $_POST['category'];
+                    if (isset($_POST['featured']))
+                    {
+                        $featured = $_POST['featured'];
+                    }
+                    else
+                    {
+                        $featured = "No"; //default vrednost
+                    }
+
+                    if (isset($_POST['active']))
+                    {
+                        $active = $_POST['active'];
+                    }
+                    else
+                    {
+                        $active = "No";
+                    }
+                    //ubacivanje slike ako je selektovana
+                    //provera da li je select image kliknut i upload slike ako jeste
+                    if (isset($_FILES['image']['name']))
+                    {
+                        //uzima detalje selektovane slike
+                        $image_name = $_FILES['image']['name'];
+                        //provera da li je slika uploadovana ako neko klikne cancel bez ovoga ne bi radilo
+                        if ($image_name !="")
+                        {
+                            //upload slike, src_path je trenutno mesto slike
+                            $src_path =$_FILES['name']['tmp_name'];
+
+                            //mesto na koje se uploaduje slike
+                            $dst = "img/food".$image_name;
+
+                            $upload = move_uploaded_file($src_path,$dst);
+
+                            if ($upload == false)
+                            {
+                                $_SESSION['upload'] = "<div class='error'> Failed to upload image </div>";
+                                header("location:".SITE_URL."add-food.php");
+                                die();
+                            }
+
+
+                        }
+                    }
+                    else
+                    {
+                        $image_name = ""; //slika nije izabrana dodeljuje se default vrednost
+                    }
+
+
+                    //ubacivanje u bazu
+                    $sql2 = "INSERT into tbl_food set 
+                                title='$title',
+                                description='$description',
+                                price=$price,
+                                image_name = '$image_name',
+                                category_id=$category,
+                                featured='$featured',
+                                active='$active'
+                                ";
+
+                    $res2 = mysqli_query($conn,$sql2);
+                    //provera da li je izvrsen kveri i vracanje na manage-food.php
+                    if ($res2 == true)
+                    {
+                        //podaci uspesno ubaceni u bazu
+                        $_SESSION['add2'] = "<div class='succes'> Food added successfully </div>";
+                        header("location:".SITE_URL."manage-food.php");
+                    }
+                    else
+                    {
+                        $_SESSION['add2'] = "<div class='error'> Failed to add Food </div>";
+                        header("location:".SITE_URL."manage-food.php");
+                    }
+
+                }
+
+
+
+
+            //ob_end_flush();//ovo resilo ovaj error Warning: Cannot Modify Header Information - Headers Already Sent By (Output Started At C:\Xampp\Htdocs\DOSTAVA_PROJEKAT\Add-Food.Php:89) In C:\Xampp\Htdocs\DOSTAVA_PROJEKAT\Add-Food.Php On Line 200
+
+
+            ?></div>
     </div>
