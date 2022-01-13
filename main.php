@@ -1,11 +1,12 @@
 <?php
+
 include ("header.php");
 include ("home.php");
 include ("dishes.php");
 include ("about.php");
-include ("menu.php");
+include("categories.php");
 include ("review.php");
-include "order.php";
+//include "order.php";
 include "footer.php";
 ?>
 
