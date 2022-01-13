@@ -48,7 +48,7 @@ include "admin-header.php";
                     <tr>
                         <td>Select image:</td>
                         <td>
-                            <input type="file" accept="image/*">
+                            <input type="file" name="image" accept="image/*">
                         </td>
                     </tr>
 
@@ -119,6 +119,7 @@ include "admin-header.php";
             </form>
 
 <?php
+                include_once "constants.php";
 
                 //insertovanje u bazu
                 //provera da li je dugme kliknuto
@@ -130,6 +131,7 @@ include "admin-header.php";
                     $description = $_POST['description'];
                     $price = $_POST['price'];
                     $category = $_POST['category'];
+
                     if (isset($_POST['featured']))
                     {
                         $featured = $_POST['featured'];
@@ -149,20 +151,19 @@ include "admin-header.php";
                     }
                     //ubacivanje slike ako je selektovana
                     //provera da li je select image kliknut i upload slike ako jeste
-                    if (isset($_FILES['image']['name']))
+                    if (isset($_FILES['image']['name']) && $_FILES['image']['size'] != 0)
                     {
-                        //uzima detalje selektovane slike
-                        $image_name = $_FILES['image']['name'];
-                        //provera da li je slika uploadovana ako neko klikne cancel bez ovoga ne bi radilo
-                        if ($image_name !="")
-                        {
+                            //uzima detalje selektovane slike
+                            $image_name = $_FILES['image']['name'];
+                            //provera da li je slika uploadovana ako neko klikne cancel bez ovoga ne bi radilo
+
                             //upload slike, src_path je trenutno mesto slike
-                            $src_path =$_FILES['name']['tmp_name'];
+                            $source_path = $_FILES['image']['tmp_name'];
 
                             //mesto na koje se uploaduje slike
-                            $dst = "img/food".$image_name;
+                            $destination_path = "img/food/".$image_name;
 
-                            $upload = move_uploaded_file($src_path,$dst);
+                            $upload = move_uploaded_file($source_path,$destination_path);
 
                             if ($upload == false)
                             {
@@ -172,7 +173,7 @@ include "admin-header.php";
                             }
 
 
-                        }
+
                     }
                     else
                     {

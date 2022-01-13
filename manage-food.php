@@ -12,6 +12,10 @@
     <!--font awesome cdn link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    <?php
+    include ('constants.php');
+    ?>
+
     <title>Los Pollos Hermanos admin page</title>
 </head>
 <body>
@@ -42,6 +46,7 @@
             <br><br>
 <?php
 
+
                 if (isset($_SESSION['add2']))
                 {
                     echo $_SESSION['add2'];
@@ -56,56 +61,78 @@
             <table class="tbl-full">
                 <tr>
                     <th>Serial number</th>
-                    <th>Full Name</th>
-                    <th>Username</th>
-                    <th>Password</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Featured</th>
+                    <th>Active</th>
+                    <th>Actions</th>
                 </tr>
+                <?php
+                    //skl kveri koji uzima hranu iz baze
+                    $sql = "select * from tbl_food";
 
-                <tr>
-                    <td class="celija">1.</td>
-                    <td class="celija">Luka Prcic</td>
-                    <td class="celija">lukaPrcic</td>
-                    <td class="celija">
-                        <a href="#" class="btn-primary">Update admin</a>
-                        <a href="#" class="btn-delete">Delete admin</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celija">2.</td>
-                    <td class="celija">Luka Prcic</td>
-                    <td class="celija">lukaPrcic</td>
-                    <td class="celija">
-                        <a href="#" class="btn-primary">Update admin</a>
-                        <a href="#" class="btn-delete">Delete admin</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celija">3.</td>
-                    <td class="celija">Luka Prcic</td>
-                    <td class="celija">lukaPrcic</td>
-                    <td class="celija">
-                        <a href="#" class="btn-primary">Update admin</a>
-                        <a href="#" class="btn-delete">Delete admin</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celija">4.</td>
-                    <td class="celija">Luka Prcic</td>
-                    <td class="celija">lukaPrcic</td>
-                    <td class="celija">
-                        <a href="#" class="btn-primary">Update admin</a>
-                        <a href="#" class="btn-delete">Delete admin</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celija">5.</td>
-                    <td class="celija">Luka Prcic</td>
-                    <td class="celija">lukaPrcic</td>
-                    <td class="celija">
-                        <a href="#" class="btn-primary">Update admin</a>
-                        <a href="#" class="btn-delete">Delete admin</a>
-                    </td>
-                </tr>
+                    $res = mysqli_query($conn,$sql);
+
+                    //broji redove
+                    $count = mysqli_num_rows($res);
+
+                    $sn = 1;
+
+                    if ($count > 0 )
+                    {
+                        //imamo hranu u bazi
+                        while($row = mysqli_fetch_assoc($res))
+                        {
+                            $id = $row['id'];
+                            $title = $row['title'];
+                            $price = $row['price'];
+                            $image_name = $row['image_name'];
+                            $featured = $row['featured'];
+                            $active = $row['active'];
+
+                            ?>
+                            <tr>
+                                <td class="celija"><?php echo $sn++ ?>.</td>
+                                <td class="celija"><?php echo $title ?></td>
+                                <td class="celija">$<?php echo $price ?></td>
+                                <td class="celija">
+                                    <?php
+                                        //provera da li imamo sliku ili ne
+                                        if ($image_name == "")
+                                        {
+                                            echo "<div class='error'> Image not added </div>";
+                                        }
+                                        else
+                                        {
+                                            //display slike
+                                            ?>
+                                            <img src="<?php echo SITE_URL; ?>img/food/<?php echo $image_name?>" width="150px">
+                                            <?php
+                                        }
+                                    ?>
+                                </td>
+                                <td class="celija"><?php echo $featured ?></td>
+                                <td class="celija"><?php echo $active ?></td>
+                                <td class="celija">
+                                    <a href="#" class="btn-primary">Update admin</a>
+                                    <a href="#" class="btn-delete">Delete admin</a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    else
+                    {
+                        //nemamo hranu u bazi
+                        echo "<tr> <td colspan='7' class='error'> Food not added yet. </td> </tr>";
+                    }
+
+
+
+                ?>
+
+
             </table>
         </div>
     </div>
@@ -113,9 +140,7 @@
 
 <!-- Tabela menadzera kraj-->
 
-<?php
-include_once ('constants.php');
-?>
+
 
 </body>
 </html>
