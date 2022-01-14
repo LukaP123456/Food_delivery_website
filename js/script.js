@@ -14,3 +14,14 @@ function fadeOut(){
 }
 
 window.onload = fadeOut;
+
+/*
+document.getElementById("search").classList.add("search-shown");
+
+function toggleSearch(){
+    document.getElementById("search").classList.toggle("search-shown")
+}
+*/
+
+
+

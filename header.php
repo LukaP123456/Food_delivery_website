@@ -51,7 +51,13 @@
 
     <div class="icons">
         <i class="fas fa-bars" id="menu-bars"></i>
-        <i class="fas fa-search" id="search-icon"></i>
+        <i class="fas fa-search" id="search-icon" onclick="toggleSearch()"></i>
+   <!--
+        <form action="" method="POST">
+            <input type="text" id="search">
+            <i id="klir">X</i>
+        </form>
+    -->
         <a href="#" class="fas fa-heart"></a><!--fas fa-bars selektuje ikonicu za srce iz font-awesome drugi isto rade -->
         <a href="order.php" class="fas fa-shopping-cart"></a>
 

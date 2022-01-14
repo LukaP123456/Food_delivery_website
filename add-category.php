@@ -160,7 +160,7 @@
                     else
                     {
                         //ako slika nije uploadovana ime ce biti prazno
-                        $image_name = " ";
+                        $image_name = " ";//razlika izmedju "" != " " me ubila
                     }
 
 
