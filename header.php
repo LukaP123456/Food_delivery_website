@@ -9,7 +9,7 @@
     <meta name="description" content="Fast food delivery website">
 
 
-    <title>Los Pollos Hermanos food delivery</title>
+    <title>LP dostava hrane</title>
 
     <!--font awesome cdn link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -26,7 +26,7 @@
 <!--header start-->
 
 <header>
-    <a href="#" class="logo"><i class="fas fa-utensils"></i>resto.</a>
+    <a href="#" class="logo"><i class="fas fa-drumstick-bite"></i>LP dostava</a>
     <nav class="navbar">
         <a class="active" href="main.php">home</a>
         <a href="dishes.php" >dishes</a>
@@ -51,13 +51,8 @@
 
     <div class="icons">
         <i class="fas fa-bars" id="menu-bars"></i>
-        <i class="fas fa-search" id="search-icon" onclick="toggleSearch()"></i>
-   <!--
-        <form action="" method="POST">
-            <input type="text" id="search">
-            <i id="klir">X</i>
-        </form>
-    -->
+        <a href="dishes.php" class="fas fa-search" id="search-icon"  ></a>
+
         <a href="#" class="fas fa-heart"></a><!--fas fa-bars selektuje ikonicu za srce iz font-awesome drugi isto rade -->
         <a href="order.php" class="fas fa-shopping-cart"></a>
 

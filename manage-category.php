@@ -16,7 +16,7 @@
 
     ?>
 
-    <title>Los Pollos Hermanos admin page</title>
+    <title>LP dostava hrane admin page</title>
 </head>
 <body>
 

@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="image">
-            <img src="img/ljubav.jpg" alt="">
+            <img src="img/hrana.jpg" alt="hrana">
         </div>
 
         <div class="content">

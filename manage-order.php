@@ -12,7 +12,7 @@
     <!--font awesome cdn link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <title>Los Pollos Hermanos admin page</title>
+    <title>LP dostava hrane admin page</title>
 </head>
 <body>
 

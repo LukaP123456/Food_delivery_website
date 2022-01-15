@@ -1,4 +1,4 @@
-<title>Los Pollos Hermanos food delivery dishes</title>
+<title>LP dostava hrane dishes</title>
 <?php
 include "stil.php";
 include "header.php";

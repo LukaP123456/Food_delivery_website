@@ -13,7 +13,7 @@ include "footer.php";
 <!--loader deo-->
 
 <div class="loader-container">
-    <img src="img/sala.gif" alt="">
+    <img src="img/kokoska.gif" alt="kokoska">
 </div>
 
 
