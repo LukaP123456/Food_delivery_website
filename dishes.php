@@ -20,7 +20,7 @@ include_once "constants-front.php"
             </form>
         </div>
     </section>
-
+    <div class="box-container">
     <?php
         //Uzimanje hrane iz baze koje su aktivni i featured
         //kveri
@@ -44,7 +44,7 @@ include_once "constants-front.php"
                 $description = $row['description'];
                 $image_name = $row['image_name'];
                 ?>
-                <div class="box-container">
+
 
                     <div class="box">
                         <a href="#" class="fas fa-heart"></a><!--vrv cu izbrisati ovo -->
@@ -76,7 +76,7 @@ include_once "constants-front.php"
                         <p><?php echo $description ?></p>
                         <a href="#" class="btn">add to cart</a>
                     </div>
-                </div>
+
                 <?php
             }
         }
@@ -85,6 +85,7 @@ include_once "constants-front.php"
             echo "<div class='error'> Food not available </div> ";
         }
     ?>
+                </div>
 
 </section>
 <!--food/dishes sekcija kraj -->
