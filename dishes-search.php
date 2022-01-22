@@ -19,6 +19,7 @@ $search = $_POST['search'];
     <h3 class="sub-heading">our dishes</h3>
     <h1 class="heading">popular dishes</h1>
     <h1>Foods on your search <?php echo $search; ?></h1>
+    <div class="box-container">
     <?php
 
         //sql kveri uzima hranu iz baze na osnovu $search
@@ -41,7 +42,7 @@ $search = $_POST['search'];
                 $description_select = $row['description'];
                 $image_name_select = $row['image_name'];
                 ?>
-                <div class="box-container">
+
 
                     <div class="box">
                         <a href="#" class="fas fa-heart"></a><!--vrv cu izbrisati ovo -->
@@ -73,7 +74,7 @@ $search = $_POST['search'];
                         <p><?php echo $description_select; ?></p>
                         <a href="#" class="btn">add to cart</a>
                     </div>
-                </div>
+
 
                 <?php
             }
@@ -86,7 +87,9 @@ $search = $_POST['search'];
 
 
 
-
+?></div>
+    <div class="box-container">
+    <?php
         //Uzimanje hrane iz baze koje su aktivni i featured
         //kveri
         $sql2 = "Select * from tbl_food where active='Yes' and featured='Yes'";
@@ -109,7 +112,7 @@ $search = $_POST['search'];
                 $description = $row['description'];
                 $image_name = $row['image_name'];
                 ?>
-                <div class="box-container">
+
 
                     <div class="box">
                         <a href="#" class="fas fa-heart"></a><!--vrv cu izbrisati ovo -->
@@ -141,7 +144,7 @@ $search = $_POST['search'];
                         <p><?php echo $description ?></p>
                         <a href="#" class="btn">add to cart</a>
                     </div>
-                </div>
+
                 <?php
             }
         }
@@ -149,7 +152,7 @@ $search = $_POST['search'];
         {
             echo "<div class='error'> Food not available </div> ";
         }
-    ?>
+    ?> </div>
 
 </section>
 <!--food/dishes sekcija kraj -->

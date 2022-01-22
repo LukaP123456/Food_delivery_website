@@ -26,7 +26,7 @@
 <!--header start-->
 
 <header>
-    <a href="#" class="logo"><i class="fas fa-drumstick-bite"></i>LP dostava</a>
+    <a href="main.php" class="logo"><i class="fas fa-drumstick-bite"></i>LP dostava</a>
     <nav class="navbar">
         <a class="active" href="main.php">home</a>
         <a href="dishes.php" >dishes</a>
@@ -35,17 +35,6 @@
         <a href="#review">review</a>
         <a href="order.php">order</a>
         <a href="manage-admin.php">Admin login</a>
-        <?php
-        //session_start();
-
-        if (isset($_SESSION['user']))
-        {
-
-            echo " <a href='logout.php'>Admin logout</a>";
-        }
-        ?>
-
-
 
     </nav>
 
@@ -58,5 +47,17 @@
 
 
     </div>
+        <?php
+        //session_start();
+
+        if (isset($_SESSION['user']))
+        {
+
+            echo " <a href='logout.php'>Admin logout</a>";
+        }
+        ?>
+
+
+
 </header>
 <!-- header kraj -->
