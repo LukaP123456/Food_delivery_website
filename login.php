@@ -16,7 +16,7 @@
     <?php
     include ('constants.php');
     ?>
-    <title>Login - adminf for food delivery system</title>
+    <title>Login - admin for food delivery system</title>
 </head>
 <body>
 

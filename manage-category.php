@@ -23,7 +23,7 @@
 <br><br><br>
 <!-- Header managment dela start-->
 <header>
-    <a href="#" class="logo"><i class="fas fa-utensils"></i>resto.</a>
+    <a href="#" class="logo"><i class="fas fa-utensils"></i>LP dostava admin</a>
     <nav class="navbar">
 
         <a href="main.php">Stranica za musteriju</a>

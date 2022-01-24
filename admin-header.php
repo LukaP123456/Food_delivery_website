@@ -16,14 +16,14 @@
 
     ?>
 
-    <title>Los Pollos Hermanos admin page</title>
+    <title>LP dostava hrane</title>
 </head>
 <body>
 
 <br><br><br>
 <!-- Header  deo start-->
 <header>
-    <a href="#" class="logo"><i class="fas fa-utensils"></i>resto.</a>
+    <a href="manage-admin.php" class="logo"><i class="fas fa-utensils"></i>LP dostava admin</a>
     <nav class="navbar">
 
         <a href="main.php">Stranica za musteriju</a>

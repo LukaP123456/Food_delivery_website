@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 
-    <title>Los Pollos Hermanos admin page</title>
+    <title>LP dostava hrane admin page</title>
 
 </head>
 <body>
@@ -22,7 +22,7 @@
 <br><br><br>
 <!-- Header  deo start-->
 <header>
-    <a href="#" class="logo"><i class="fas fa-utensils"></i>resto.</a>
+    <a href="#" class="logo"><i class="fas fa-utensils"></i>LP dostava admin</a>
     <nav class="navbar">
 
         <a href="main.php">Stranica za musteriju</a>
