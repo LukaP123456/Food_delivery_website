@@ -1,12 +1,8 @@
+@import "varijable";
 section{
   padding: 2rem 9%;
 }
-/*na sta se odnosi ovaj deo ispod?*/
-/*
-section:nth-child(even){
-  background: #eee;
-}
-*/
+
 .home .home-slider .slide{
   display: flex;
   align-items: center;
@@ -86,16 +82,17 @@ ol.carousel-indicators {
 
 ol.carousel-indicators li,
 ol.carousel-indicators li.active {
-  border: black solid !important;/*izbrisi*/
+
   float: left;
   width: 33%;
   height: 20px;
   margin: 0;
   border-radius: 0;
   border: 0;
-  background: transparent;
+
 }
 
 ol.carousel-indicators li.active {
-  background: yellow;
+  background: $green;
+
 }

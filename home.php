@@ -19,10 +19,10 @@
                             <h3>Spicy noodles</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum
                                 cumque cupiditate fuga iste iusto mollitia non numquam obcaecati odit quaerat? Beatae eveniet</p>
-                            <a href="#" class="btn">order now</a>
+                            <a href="dishes.php" class="btn">order now</a>
                         </div>
                         <div class="image">
-                            <img src="img/nicke.jpg" alt="">
+                            <img src="img/nudle.jpg" width="1200" alt="nudle" height="500">
                         </div>
 
                     </div>
@@ -35,10 +35,10 @@
                             <h3>Fried chicken</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum
                                 cumque cupiditate fuga iste iusto mollitia non numquam obcaecati odit quaerat? Beatae eveniet</p>
-                            <a href="#" class="btn">order now</a>
+                            <a href="dishes.php" class="btn">order now</a>
                         </div>
                         <div class="image">
-                            <img src="img/micke.jpg" alt="MIHAJLO">
+                            <img src="img/piletina.jpg" alt="fried chicken" width="1200" height="500">
                         </div>
 
                     </div>
@@ -51,10 +51,10 @@
                             <h3>Hot pizza</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum
                                 cumque cupiditate fuga iste iusto mollitia non numquam obcaecati odit quaerat? Beatae eveniet</p>
-                            <a href="#" class="btn">order now</a>
+                            <a href="dishes.php" class="btn">order now</a>
                         </div>
                         <div class="image">
-                            <img src="img/vico.jpg" alt="">
+                            <img src="img/pizza.jpg" alt="pica" height="500" >
                         </div>
 
                     </div>

@@ -9,7 +9,7 @@
     <meta name="description" content="Fast food delivery website">
 
 
-    <title>Los Pollos Hermanos food delivery</title>
+    <title>LP dostava hrane</title>
 
     <!--font awesome cdn link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -26,23 +26,38 @@
 <!--header start-->
 
 <header>
-    <a href="#" class="logo"><i class="fas fa-utensils"></i>resto.</a>
+    <a href="main.php" class="logo"><i class="fas fa-drumstick-bite"></i>LP dostava</a>
     <nav class="navbar">
-        <a class="active" href="#home">home</a>
-        <a href="#dishes">dishes</a>
-        <a href="#about">about</a>
-        <a href="#menu">menu</a>
+        <a class="active" href="main.php">home</a>
+        <a href="dishes.php" >dishes</a>
+        <a href="main.php">about</a>
+        <a href="categories.php">Categories</a>
         <a href="#review">review</a>
-        <a href="#order">order</a>
+        <a href="order.php">order</a>
+        <a href="manage-admin.php">Admin login</a>
+
     </nav>
 
     <div class="icons">
         <i class="fas fa-bars" id="menu-bars"></i>
-        <i class="fas fa-search" id="search-icon"></i>
+        <a href="dishes.php" class="fas fa-search" id="search-icon"  ></a>
+
         <a href="#" class="fas fa-heart"></a><!--fas fa-bars selektuje ikonicu za srce iz font-awesome drugi isto rade -->
-        <a href="#" class="fas fa-shopping-cart"></a>
+        <a href="order.php" class="fas fa-shopping-cart"></a>
 
 
     </div>
+        <?php
+        //session_start();
+
+        if (isset($_SESSION['user']))
+        {
+
+            echo " <a href='logout.php'>Admin logout</a>";
+        }
+        ?>
+
+
+
 </header>
 <!-- header kraj -->

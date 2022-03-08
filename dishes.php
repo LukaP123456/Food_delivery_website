@@ -1,116 +1,93 @@
-<!-- dishes sekcija pocetak -->
+<title>LP dostava hrane dishes</title>
+<?php
+include "stil.php";
+include "header.php";
+include_once "constants-front.php"
+?>
+
+<!-- food/dishes sekcija pocetak -->
 
 <section class="dishes" id="dishes">
 
     <h3 class="sub-heading">our dishes</h3>
     <h1 class="heading">popular dishes</h1>
 
+    <section class="prva-sekcija">
+        <div class="box-container">
+            <form action="<?php echo SITE_URL; ?>dishes-search.php" method="POST">
+                <input type="search" name="search" placeholder="Search for food" required>
+                <input type="submit" name="submit" value="Search" class="btn">
+            </form>
+        </div>
+    </section>
     <div class="box-container">
+    <?php
+        //Uzimanje hrane iz baze koje su aktivni i featured
+        //kveri
+        $sql2 = "Select * from tbl_food where active='Yes' and featured='Yes'";
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a><!--vrv cu izbrisati ovo -->
-            <a href="#" class="fas fa-eye"></a>
-            <img src="img/kafa.jpg" alt="KAFA">
-            <h3>tasty food</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
+        //izvrsavanje
+        $result = mysqli_query($conn,$sql2);
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="img/kafa.jpg" alt="KAFA">
-            <h3>tasty food</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
+        //broji redove
+        $count = mysqli_num_rows($result);
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="img/kafa.jpg" alt="KAFA">
-            <h3>tasty food</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
+        //provera da li je hrana available
+        if ($count > 0)
+        {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                //uzimanje podataka
+                $id = $row['id'];
+                $title = $row['title'];
+                $price = $row['price'];
+                $description = $row['description'];
+                $image_name = $row['image_name'];
+                ?>
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="img/kafa.jpg" alt="KAFA">
-            <h3>tasty food</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
-        <!--predzadnji box -->
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="img/kafa.jpg" alt="KAFA">
-            <h3>tasty food</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
+                    <div class="box">
+                        <a href="#" class="fas fa-heart"></a><!--vrv cu izbrisati ovo -->
+                        <a href="#" class="fas fa-eye"></a>
+                        <?php
+                            //provera da li postoji slika
+                            if ($image_name == "")
+                            {
+                                echo "<div class='error'> Image not available </div> ";
+                            }
+                            else
+                            {
+                                ?>
+                                <img src="<?php echo SITE_URL;?>img/food/<?php echo $image_name; ?>">
+                                <?php
+                            }
+                        ?>
 
-        <!--zadnji box-->
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="img/kafa.jpg" alt="KAFA">
-            <h3>tasty food</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
+                        <h3><?php echo $title?></h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span>$<?php echo $price?></span>
+                        <p><?php echo $description ?></p>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
 
+                <?php
+            }
+        }
+        else
+        {
+            echo "<div class='error'> Food not available </div> ";
+        }
+    ?>
+                </div>
 
 </section>
-<!-- dishes sekcija kraj -->
+<!--food/dishes sekcija kraj -->
+
+

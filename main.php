@@ -1,20 +1,19 @@
 <?php
+
 include ("header.php");
 include ("home.php");
-include ("dishes.php");
+include ("dishes-front.php");
 include ("about.php");
-include ("menu.php");
+include("categories.php");
 include ("review.php");
-include "order.php";
+//include "order.php";
 include "footer.php";
 ?>
-
-<p></p>
 
 <!--loader deo-->
 
 <div class="loader-container">
-    <img src="img/sala.gif" alt="">
+    <img src="img/kokoska.gif" alt="kokoska">
 </div>
 
 

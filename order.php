@@ -1,3 +1,8 @@
+<?php
+include "stil.php";
+include "header.php";
+?>
+
 <!--order sekcija start-->
 
 <section id="order" class="order">
